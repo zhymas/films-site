@@ -8,7 +8,7 @@ from django.contrib.auth import logout, login
 
 class CreateUser(CreateView):
     form_class = RegisterForm
-    template_name = 'client/register.html'
+    template_name = 'client/create_user.html'
 
     def form_valid(self, form):
         user = form.save()
@@ -18,7 +18,7 @@ class CreateUser(CreateView):
 
 class LoginUser(LoginView):
     form_class = AuthForm
-    template_name = 'client/login.html'
+    template_name = 'client/login_user.html'
 
     def get_success_url(self):
         return JsonResponse({'success': 'user login'})
