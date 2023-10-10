@@ -18,7 +18,7 @@ class CreateUser(CreateView):
 
 class LoginUser(LoginView):
     form_class = AuthForm
-    template_name = 'client/login,html'
+    template_name = 'client/login.html'
 
     def get_success_url(self):
         return JsonResponse({'success': 'user login'})
