@@ -24,3 +24,12 @@ class LoginUser(LoginView):
 
     def get_success_url(self):
         return '/'
+
+
+def detail_user(request):
+    return render(request, 'client/detail_user.html')
+
+
+def logout_user(request):
+    logout(request)
+    return redirect('home')

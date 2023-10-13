@@ -43,10 +43,16 @@
           </ul>
         </li>
       </ul>
+        {% if user.is_authenticated %}
+            <form class="d-flex" role="search">
+          <a href="{% url 'detail_user' %}" class="btn btn-outline-primary">{{ user.username }}</a>
+      </form>
+        {% else %}
       <form class="d-flex" role="search">
           <a href="{% url 'login' %}" class="btn btn-outline-primary">Login</a>
           <a href="{% url 'register' %}" class="btn btn-outline-success">Register</a>
       </form>
+        {% endif %}
     </div>
   </div>
 </nav>
