@@ -3,11 +3,11 @@ services:
   postgres:
     image: postgres
     ports:
-      - "8085:5432"
+      - "8083:5432"
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres1
+      - POSTGRES_PASSWORD=postgres1
+      - POSTGRES_DB=postgres1
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
