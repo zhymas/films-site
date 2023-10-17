@@ -8,6 +8,7 @@ class Actor(models.Model):
     age = models.IntegerField(default=0)
     bio = models.TextField()
     photo = models.ImageField(upload_to='actors/')
+    url = models.SlugField(max_length=100)
 
     def __str__(self):
         return self.name
@@ -32,6 +33,7 @@ class Rating(models.Model):
 class Genre(models.Model):
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField()
+    url = models.SlugField(max_length=100)
 
     def __str__(self):
         return self.name
@@ -42,6 +44,7 @@ class Director(models.Model):
     bio = models.TextField()
     age = models.IntegerField(default=0)
     photo = models.ImageField(upload_to='directors/')
+    url = models.SlugField(max_length=100)
 
     def __str__(self):
         return self.name
@@ -50,10 +53,10 @@ class Director(models.Model):
 class MovieActor(models.Model):
     movie = models.ForeignKey('Movie', on_delete=models.CASCADE)
     actor = models.ForeignKey(Actor, on_delete=models.CASCADE)
-    role = models.CharField(max_length=255)
+    url = models.SlugField(max_length=100)
 
     def __str__(self):
-        return f'{self.actor.name} в роли {self.role} в фильме {self.movie.title}'
+        return f'{self.actor.name} в фильме {self.movie.title}'
 
 
 class Movie(models.Model):
@@ -61,9 +64,9 @@ class Movie(models.Model):
     release_date = models.DateField(default=date.today)
     director = models.ForeignKey(Director, on_delete=models.SET_NULL, null=True, related_name='director')
     descriptions = models.TextField()
-    actor = models.ForeignKey(Actor, on_delete=models.SET_NULL, related_name='actor', null=True)
     poster = models.ImageField(upload_to='posters/', null=True, blank=True)
     genre = models.ForeignKey(Genre, on_delete=models.SET_NULL, null=True)
+    url = models.SlugField(max_length=100)
 
     def __str__(self):
         return self.title
